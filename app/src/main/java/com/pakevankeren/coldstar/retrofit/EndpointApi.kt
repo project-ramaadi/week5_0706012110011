@@ -18,14 +18,14 @@ interface EndpointApi {
     suspend fun getNowPlaying(
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("region") region: String
     ): Response<NowPlaying>
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetail(
         @Path("movie_id") id: Int,
         @Query("api_key") apiKey: String,
-        @Query("language") language: String,
     ): Response<MovieDetail>
 
 }

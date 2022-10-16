@@ -4,4 +4,8 @@
     <string name="placeholder">Placeholder</string>
     <string name="airing_now">Airing now</string>
     <string name="loading_movie_text">Loading movie</string>
+    <string name="movieDetail_title_synopsis">Synopsis</string>
+    <string name="movieDetail_spoken_language">Spoken Language</string>
+    <string name="movieDetail_title_genre">Genre</string>
+    <string name="movieDetail_production_company_title">Production Company</string>
 </resources>

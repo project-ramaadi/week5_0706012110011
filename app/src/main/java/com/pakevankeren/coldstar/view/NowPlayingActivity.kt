@@ -34,7 +34,8 @@ class NowPlayingActivity : AppCompatActivity() {
 
         binding.nowPlayingRefreshLayout.setOnRefreshListener {
             binding.nowPlayingRefreshLayout.isRefreshing = true
-            viewModel.getNowPlaying("en-US", 1)
+            val countryList = listOf("ID", "US", "JP", "KR", "SG")
+            viewModel.getNowPlaying(region = countryList.random())
         }
     }
 
@@ -44,7 +45,7 @@ class NowPlayingActivity : AppCompatActivity() {
     }
 
     private fun loadViewModel() {
-        viewModel.getNowPlaying("en-US", 1)
+        viewModel.getNowPlaying(region = "ID")
         viewModel.nowPlaying.observe(this) { response ->
             recyclerViewVisible(true)
             binding.nowPlayingRefreshLayout.isRefreshing = false

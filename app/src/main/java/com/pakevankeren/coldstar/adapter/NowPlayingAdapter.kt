@@ -13,9 +13,11 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.pakevankeren.coldstar.R
+import com.pakevankeren.coldstar.config.CommonEnum
 import com.pakevankeren.coldstar.config.RetrofitConfig
 import com.pakevankeren.coldstar.databinding.CardNowPlayingBinding
 import com.pakevankeren.coldstar.model.NowPlayingResult
+import com.pakevankeren.coldstar.utils.GlideUtils
 import com.pakevankeren.coldstar.view.MovieDetailActivity
 
 class NowPlayingAdapter(private val nowPlayingDataset: ArrayList<NowPlayingResult>) :
@@ -36,13 +38,16 @@ class NowPlayingAdapter(private val nowPlayingDataset: ArrayList<NowPlayingResul
         }
 
         fun openDetailView(context: Context) {
-            val intent = Intent(context, MovieDetailActivity::class.java)
-                .putExtra("movieid", nowPlayingDataset[adapterPosition].id)
+            val intent = Intent(context, MovieDetailActivity::class.java).putExtra(
+                CommonEnum.MOVIE_ID_PARCEL,
+                nowPlayingDataset[adapterPosition].id
+            )
             context.startActivity(intent)
         }
 
         fun loadImage(view: View) {
-            Glide.with(view.context)
+            if (nowPlayingDataset[adapterPosition].poster_path != null) Glide
+                .with(view.context)
                 .load(RetrofitConfig.IMG_BASE_URL + nowPlayingDataset[adapterPosition].poster_path)
                 .into(movieCard.nowPlayingPosterImage)
         }
@@ -68,7 +73,6 @@ class NowPlayingAdapter(private val nowPlayingDataset: ArrayList<NowPlayingResul
         viewHolder.nowPlayingCard.setOnClickListener {
             viewHolder.openDetailView(it.context)
         }
-
     }
 
     override fun getItemCount() = nowPlayingDataset.size
