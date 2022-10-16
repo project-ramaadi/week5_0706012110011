@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ColdStar</string>
+    <string name="splashscreen_text_title">ColdStar</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="airing_now">Airing now</string>
+    <string name="loading_movie_text">Loading movie</string>
 </resources>

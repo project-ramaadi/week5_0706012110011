@@ -1,8 +1,10 @@
 package com.pakevankeren.coldstar.retrofit
 
+import com.pakevankeren.coldstar.model.MovieDetail
 import com.pakevankeren.coldstar.model.NowPlaying
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface EndpointApi {
@@ -18,5 +20,12 @@ interface EndpointApi {
         @Query("language") language: String,
         @Query("page") page: Int
     ): Response<NowPlaying>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetail(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+    ): Response<MovieDetail>
 
 }
